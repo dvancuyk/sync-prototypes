@@ -4,9 +4,9 @@ using System.IO;
 
 namespace SyncPrototype.Tests
 {
-    public class NewSyncTests : TestRun
+    public class NewSyncTestRun : TestRun
     {
-        public NewSyncTests(SmplRepository smpls, SampleRepository samples, TextWriter writer) : base(smpls, samples, writer)
+        public NewSyncTestRun(SmplRepository smpls, SampleRepository samples, ILogger writer) : base(smpls, samples, writer)
         {
         }
 

@@ -35,6 +35,9 @@ namespace SyncPrototype.Components.Samples
 
         public override bool Equals(object obj)
         {
+            if (obj == null)
+                return false;
+
             var identity = obj as SampleIdentity;
 
             if (identity == null)
@@ -48,11 +51,13 @@ namespace SyncPrototype.Components.Samples
             var hash = 17 * 31 + name.GetHashCode();
             return hash;
         }
-        public static bool operator ==(SampleIdentity x, SampleIdentity y)
+        public static bool operator ==(SampleIdentity left, SampleIdentity right)
         {
-            if (x == null || y == null) return false;
-
-            return x.Equals(y);
+            if (Equals(left, null))
+            {
+                return (Equals(right, null)) ? true : false;
+            }
+            return left.Equals(right);
         }
 
         public static bool operator !=(SampleIdentity x, SampleIdentity y)

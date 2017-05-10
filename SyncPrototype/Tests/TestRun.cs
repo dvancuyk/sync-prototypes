@@ -1,13 +1,8 @@
 ﻿using SyncPrototype.Client;
 using SyncPrototype.Components.Samples;
 using SyncPrototype.Connect;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SyncPrototype.Tests
 {
@@ -17,7 +12,7 @@ namespace SyncPrototype.Tests
         protected string AdditionalDescriptions { get; set; }
         public int Iterations { get; set; }
 
-        protected TestRun(SmplRepository smpls, SampleRepository samples, TextWriter writer)
+        protected TestRun(SmplRepository smpls, SampleRepository samples, ILogger writer)
         {
             Iterations = 10;
             ClientRepository = smpls;
@@ -27,7 +22,7 @@ namespace SyncPrototype.Tests
 
         protected SampleRepository ConnectRepository { get; }
         protected SmplRepository ClientRepository { get; }
-        protected TextWriter Writer { get;}
+        protected ILogger Writer { get;}
 
         /// <summary>
         /// Performs any work which needs to be done prior to running all of the tests.

@@ -9,7 +9,7 @@ namespace SyncPrototype.Components.Samples
         {
             EnforcePreconditions(connect, client);
 
-            return connect.Description == client.Description;
+            return connect.Description != client.Description;
         }
 
         private void EnforcePreconditions(Sample connect, Smpl client)
