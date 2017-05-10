@@ -60,6 +60,7 @@
     <Compile Include="CompositeWriter.cs" />
     <Compile Include="Connect\Sample.cs" />
     <Compile Include="Connect\SampleRepository.cs" />
+    <Compile Include="Connect\TvpSampleRepository.cs" />
     <Compile Include="Db\FirstTimeSyncSetup.cs" />
     <Compile Include="Db\PartialUpdates.cs" />
     <Compile Include="Db\SmpleBuilder.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Tests\ModifiedSyncTestRun.cs" />
     <Compile Include="Tests\NewSyncTestRun.cs" />
     <Compile Include="Tests\TestRun.cs" />
+    <Compile Include="Tests\TVPTestRun.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

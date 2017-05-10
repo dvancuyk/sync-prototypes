@@ -9,14 +9,13 @@ namespace SyncPrototype.Connect
 {
     public class SampleRepository : IRepository<Sample>, IDisposable
     {
-        private IConnectionFactory factory;
         private IDbConnection connection;
         private const string update = "UPDATE dbo.ConnectSample SET Description = @Description, Name = @Name WHERE ID = @Key";
         private const string insert = "INSERT INTO dbo.ConnectSample (Name, Description) VALUES (@Name, @Description)";
 
         public SampleRepository(IConnectionFactory factory)
         {
-            this.factory = factory;
+            this.Factory = factory;
         }
 
         public int Count
@@ -27,12 +26,12 @@ namespace SyncPrototype.Connect
             }
         }
 
-
+        public IConnectionFactory Factory { get; }
         private IDbConnection Connection
         {
             get
             {
-                return connection ?? (connection = factory.Create());
+                return connection ?? (connection = Factory.Create());
             }
         }
 

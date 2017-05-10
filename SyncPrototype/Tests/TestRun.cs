@@ -45,7 +45,7 @@ namespace SyncPrototype.Tests
             return new SampleProcessor(ClientRepository, ConnectRepository);
         }
 
-        public void Run()
+        public virtial void Run()
         {
             var timer = new Stopwatch();
             long[] times = new long[Iterations];

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SyncPrototype.Components.Samples
 {
-    public class SampleProcessor
+    public class SampleProcessor : IProcessor
     {
         private IRepository<Smpl> dataSource;
         private IRepository<Sample> synced;
@@ -44,5 +44,10 @@ namespace SyncPrototype.Components.Samples
                 }
             }
         }
+    }
+
+    public interface IProcessor
+    {
+        void Process();
     }
 }

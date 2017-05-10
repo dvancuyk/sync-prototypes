@@ -62,11 +62,13 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\User Defined Types" />
+    <Folder Include="dbo\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\ConnectSample.sql" />
     <Build Include="dbo\Tables\ClientSmpl.sql" />
     <Build Include="dbo\User Defined Types\SampleType.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_SaveCollection.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />

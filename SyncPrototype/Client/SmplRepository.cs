@@ -9,7 +9,6 @@ namespace SyncPrototype.Client
 {
     public class SmplRepository : IRepository<Smpl>, IDisposable
     {
-        private IConnectionFactory factory;
         private IDbConnection connection;
         private const string update = "UPDATE dbo.ClientSmpl SET Description = @Description WHERE Name = @Name";
         private const string insert = "INSERT INTO dbo.ClientSmpl (Name, Description) VALUES (@Name, @Description)";
@@ -24,16 +23,18 @@ namespace SyncPrototype.Client
 
         public SmplRepository(IConnectionFactory factory)
         {
-            this.factory = factory;
+            this.Factory = factory;
         }
 
         private IDbConnection Connection
         {
             get
             {
-                return connection ?? (connection = factory.Create());
+                return connection ?? (connection = Factory.Create());
             }
         }
+
+        public IConnectionFactory Factory { get; }
 
         public void Dispose()
         {
