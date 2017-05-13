@@ -58,6 +58,7 @@
     <Compile Include="Components\Samples\SampleProcessor.cs" />
     <Compile Include="Components\SqlConnectionFactory.cs" />
     <Compile Include="CompositeWriter.cs" />
+    <Compile Include="Connect\StoredProcExecutor.cs" />
     <Compile Include="Connect\Sample.cs" />
     <Compile Include="ConsoleLogger.cs" />
     <Compile Include="Db\SampleBuilder.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Db\FirstTimeSyncSetup.cs" />
     <Compile Include="Db\PartialUpdates.cs" />
     <Compile Include="Db\SmpleBuilder.cs" />
+    <Compile Include="MathExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ModifiedSyncTestRun.cs" />

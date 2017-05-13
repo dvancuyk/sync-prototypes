@@ -4,10 +4,7 @@ using SyncPrototype.Components;
 using SyncPrototype.Connect;
 using SyncPrototype.Db;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SyncPrototypeTests
 {
@@ -38,6 +35,7 @@ namespace SyncPrototypeTests
 
             // Act
             repository.Save(sample);
+            repository.Finish();
 
             // Assert
             repository.All().Should().HaveCount(1);
@@ -57,9 +55,10 @@ namespace SyncPrototypeTests
 
             // Act
             repository.Save(sample);
+            repository.Finish();
 
             // Assert
-            var saved = repository.All().First();
+            var saved = repository.All().First(s => s.Id == sample.Id);
             saved.Description.Should().Be(sample.Description);
         }
     }

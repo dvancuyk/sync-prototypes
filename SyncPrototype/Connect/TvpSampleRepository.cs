@@ -35,27 +35,8 @@ namespace SyncPrototype.Connect
 
         public void Save(IEnumerable<Sample> entities)
         {
-            using (var connection = repo.Factory.Create())
-            {
-                connection.Execute("Samples_SaveCollection", new { samples = SampleType(entities) }, commandType: CommandType.StoredProcedure);
-            }
-
-            // see http://stackoverflow.com/questions/6232978/does-dapper-support-sql-2008-table-valued-parameters
-        }
-
-        private static DataTable SampleType(IEnumerable<Sample> samples)
-        {
-            var table = new DataTable("SampleType");
-            table.Columns.Add("Id", typeof(int));
-            table.Columns.Add("Name", typeof(string));
-            table.Columns.Add("Description", typeof(string));
-
-            foreach (var sample in samples)
-            {
-                var row = table.Rows.Add(sample.Id, sample.Name, sample.Description);
-            }
-
-            return table;
+            var storedProcCommand = new StoredProcExecutor(Factory.Create());
+            storedProcCommand.Execute("Samples_SaveCollection", entities);
         }
 
         public void Finish()

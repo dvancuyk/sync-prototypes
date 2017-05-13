@@ -10,8 +10,13 @@ namespace SyncPrototype.Connect
     public class SampleRepository : IRepository<Sample>, IDisposable
     {
         private IDbConnection connection;
-        private const string update = "UPDATE dbo.ConnectSample SET Description = @Description, Name = @Name WHERE ID = @Id";
-        private const string insert = "INSERT INTO dbo.ConnectSample (Name, Description) VALUES (@Name, @Description)";
+        private const string update = "Samples_Update";
+        private const string insert = "Samples_Insert";
+        private const string delete = "Samples_Delete";
+
+        private List<Sample> modified = new List<Sample>();
+        private List<Sample> netNew = new List<Sample>();
+        private List<Sample> removed = new List<Sample>();
 
         public SampleRepository(IConnectionFactory factory)
         {
@@ -46,8 +51,14 @@ namespace SyncPrototype.Connect
 
         public void Save(Sample sample)
         {
-            var command = sample.Id > 0 ? update : insert;
-            Connection.Execute(command, sample);
+            if(sample.Id > 0)
+            {
+                modified.Add(sample);
+            }
+            else
+            {
+                netNew.Add(sample);
+            }
         }
 
         public IEnumerable<Sample> All()
@@ -62,7 +73,16 @@ namespace SyncPrototype.Connect
 
         public void Finish()
         {
-            
+            Execute(update, modified);
+            Execute(insert, netNew);
+            Execute(delete, removed);
+        }
+
+        private void Execute(string proc, List<Sample> samples)
+        {
+            var executor = new StoredProcExecutor(Connection);
+            executor.Execute(proc, samples);
+            samples.Clear();
         }
     }
 }

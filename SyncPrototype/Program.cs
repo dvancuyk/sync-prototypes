@@ -13,7 +13,7 @@ namespace SyncPrototype
         private static SqlConnectionFactory factory = new SqlConnectionFactory();
         private static SampleRepository connect = new SampleRepository(factory);
         private static SmplRepository client = new SmplRepository(factory);
-        private static ILogger logger = CreateWriter("TVP vs Single Saves");
+        private static ILogger logger = CreateWriter("Merge vs Insert Delete Update");
 
         static void Main(string[] args)
         {
