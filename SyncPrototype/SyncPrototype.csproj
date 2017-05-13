@@ -59,6 +59,8 @@
     <Compile Include="Components\SqlConnectionFactory.cs" />
     <Compile Include="CompositeWriter.cs" />
     <Compile Include="Connect\Sample.cs" />
+    <Compile Include="ConsoleLogger.cs" />
+    <Compile Include="Db\SampleBuilder.cs" />
     <Compile Include="Connect\SampleRepository.cs" />
     <Compile Include="Connect\TvpSampleRepository.cs" />
     <Compile Include="Db\FirstTimeSyncSetup.cs" />
@@ -69,10 +71,12 @@
     <Compile Include="Tests\ModifiedSyncTestRun.cs" />
     <Compile Include="Tests\NewSyncTestRun.cs" />
     <Compile Include="Tests\TestRun.cs" />
-    <Compile Include="Tests\TVPTestRun.cs" />
+    <Compile Include="Tests\TVPInsertsTestRun.cs" />
+    <Compile Include="Tests\TvpModifiedSyncTestRun.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Tests\packages.config" />
   </ItemGroup>
   <ItemGroup />

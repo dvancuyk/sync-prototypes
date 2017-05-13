@@ -55,5 +55,15 @@ namespace SyncPrototype.Client
         {
             return Connection.Query<Smpl>("SELECT * FROM dbo.ClientSmpl");
         }
+
+        public void Finish()
+        {
+            
+        }
+
+        public void Reset()
+        {
+            Connection.Execute("DELETE FROM dbo.ClientSmpl");
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace SyncPrototype.Connect
     public class SampleRepository : IRepository<Sample>, IDisposable
     {
         private IDbConnection connection;
-        private const string update = "UPDATE dbo.ConnectSample SET Description = @Description, Name = @Name WHERE ID = @Key";
+        private const string update = "UPDATE dbo.ConnectSample SET Description = @Description, Name = @Name WHERE ID = @Id";
         private const string insert = "INSERT INTO dbo.ConnectSample (Name, Description) VALUES (@Name, @Description)";
 
         public SampleRepository(IConnectionFactory factory)
@@ -46,7 +46,7 @@ namespace SyncPrototype.Connect
 
         public void Save(Sample sample)
         {
-            var command = sample.Key > 0 ? update : insert;
+            var command = sample.Id > 0 ? update : insert;
             Connection.Execute(command, sample);
         }
 
@@ -58,6 +58,11 @@ namespace SyncPrototype.Connect
         public void Reset()
         {
             Connection.Query<Sample>("DELETE FROM dbo.ConnectSample");
+        }
+
+        public void Finish()
+        {
+            
         }
     }
 }

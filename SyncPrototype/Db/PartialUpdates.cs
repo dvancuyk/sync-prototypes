@@ -1,16 +1,19 @@
-﻿using SyncPrototype.Client;
+﻿using SyncPrototype.Components;
 using SyncPrototype.Connect;
+
+using System.Linq;
+
+using Dapper;
 using System;
-using System.IO;
 
 namespace SyncPrototype.Db
 {
     public class PartialUpdates
     {
-        private readonly SampleRepository samples;
+        private readonly IRepository<Sample> samples;
         private ushort percentage;
 
-        public PartialUpdates(SampleRepository sampleRepository, ushort percent)
+        public PartialUpdates(IRepository<Sample> sampleRepository, ushort percent)
         {
             this.samples = sampleRepository;
             if (percent > 100) percent = 100;
@@ -20,25 +23,12 @@ namespace SyncPrototype.Db
         
         public void Seed()
         {
-            int count = 0;
-            int taken = 0;
-            foreach (var item in samples.All())
+            var total = samples.All().Count();
+            var changedAmount = total * percentage / 100;
+            var description = "Modified on " + DateTime.Now.ToShortTimeString();
+            using (var connection = samples.Factory.Create())
             {
-                if (taken < percentage)
-                {
-                    item.Changed = true;
-                    item.Description = Guid.NewGuid().ToString();
-
-                    taken++;
-                    samples.Save(item);
-                }
-                count++;
-
-                if (count > 100)
-                {
-                    count = 0;
-                    taken = 0;
-                }
+                connection.Execute($"UPDATE [dbo].[ConnectSample] SET Description = '{description}' WHERE Id IN(SELECT TOP {changedAmount} Id FROM ConnectSample)");
             }
         }
     }

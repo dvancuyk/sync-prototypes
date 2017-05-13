@@ -1,17 +1,19 @@
 ﻿using SyncPrototype.Client;
 using SyncPrototype.Connect;
 using System;
-using System.IO;
 
 namespace SyncPrototype.Tests
 {
-    public class NewSyncTestRun : TestRun
+    public class TVPInsertsTestRun : TestRun
     {
-        public NewSyncTestRun(SmplRepository smpls, SampleRepository samples, ILogger writer) : base(smpls, samples, writer)
+
+        public TVPInsertsTestRun(SmplRepository smpls, SampleRepository samples, ILogger writer) 
+            : base(smpls, new TvpSampleRepository(samples), writer)
         {
         }
 
-        public override string RunName => "Individual Saves - All Inserts Setup";
+        public override string RunName => "TVP All Inserts Test Run";
+
 
         protected override void PrepTest()
         {
@@ -20,7 +22,7 @@ namespace SyncPrototype.Tests
 
         protected override void Initialize()
         {
-            if(this.ClientRepository.Count == 0)
+            if (this.ClientRepository.Count == 0)
             {
                 var seeder = new Db.FirstTimeSyncSetup(ClientRepository);
                 Writer.WriteLine("Seeding {0} new records. ", seeder.Count);

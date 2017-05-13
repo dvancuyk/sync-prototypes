@@ -3,12 +3,12 @@
 AS
 BEGIN
 
-	-- Deletes?
-
+	DELETE FROM dbo.ConnectSample WHERE ID IN
+		(SELECT ConnectSample.Id FROM dbo.ConnectSample LEFT JOIN @samples AS S ON S.Id = ConnectSample.Id  WHERE S.Id IS NULL)
 
 	MERGE ConnectSample WITH (HOLDLOCK) AS c
 	USING @samples AS s
-	ON s.[Name] = c.[Name]
+	ON s.[Id] = c.[Id]
 	WHEN MATCHED THEN
 		UPDATE SET
 			[Description] = s.[Description]

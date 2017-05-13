@@ -43,6 +43,8 @@ namespace SyncPrototype.Components.Samples
                     this.synced.Save(Mapper.Convert(record, synced[identity]));
                 }
             }
+
+            this.synced.Finish();
         }
     }
 

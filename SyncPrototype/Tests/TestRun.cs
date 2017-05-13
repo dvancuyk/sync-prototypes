@@ -1,6 +1,8 @@
 ﻿using SyncPrototype.Client;
+using SyncPrototype.Components;
 using SyncPrototype.Components.Samples;
 using SyncPrototype.Connect;
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -8,21 +10,28 @@ namespace SyncPrototype.Tests
 {
     public abstract class TestRun
     {
+        private ILogger writer;
         public abstract string RunName { get; }        
         protected string AdditionalDescriptions { get; set; }
         public int Iterations { get; set; }
-
-        protected TestRun(SmplRepository smpls, SampleRepository samples, ILogger writer)
+        
+        protected TestRun(SmplRepository smpls, IRepository<Sample> samples, ILogger logger)
         {
             Iterations = 10;
             ClientRepository = smpls;
             ConnectRepository = samples;
-            Writer = writer;
+            this.writer = logger;
         }
 
-        protected SampleRepository ConnectRepository { get; }
+        protected IRepository<Sample> ConnectRepository { get; }
         protected SmplRepository ClientRepository { get; }
-        protected ILogger Writer { get;}
+        public ILogger Writer
+        {
+            get
+            {
+                return writer;
+            }
+        }
 
         /// <summary>
         /// Performs any work which needs to be done prior to running all of the tests.
@@ -45,12 +54,12 @@ namespace SyncPrototype.Tests
             return new SampleProcessor(ClientRepository, ConnectRepository);
         }
 
-        public virtial void Run()
+        public virtual void Run()
         {
             var timer = new Stopwatch();
             long[] times = new long[Iterations];
             Initialize();
-
+            Writer.WriteLine("----------------------------------");
             Writer.WriteLine("Beginning {0} runs of the test {1}", Iterations, RunName);
 
             for (var current = 0; current < Iterations; current++)
