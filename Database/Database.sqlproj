@@ -69,6 +69,9 @@
     <Build Include="dbo\Tables\ClientSmpl.sql" />
     <Build Include="dbo\User Defined Types\SampleType.sql" />
     <Build Include="dbo\Stored Procedures\Samples_SaveCollection.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />
