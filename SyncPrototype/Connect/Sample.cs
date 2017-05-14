@@ -9,5 +9,6 @@
         /// Determines if this instance has changed in the cloud and these changes should be persisted.
         /// </summary>
         public bool Changed { get; set; }
+        public bool Deleted { get; internal set; }
     }
 }

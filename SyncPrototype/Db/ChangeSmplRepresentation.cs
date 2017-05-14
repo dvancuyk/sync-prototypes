@@ -17,20 +17,19 @@ namespace SyncPrototype.Db
 
         public void Modify(Percentage percentage)
         {
-            var total = samples.Count;
-            var changedAmount = total * percentage / 100;
             var description = $"To Be Synced ({DateTime.Now.ToLongTimeString()})";
             using (var connection = samples.Factory.Create())
             {
-                connection.Execute($"UPDATE [dbo].[ClientSmpl] SET Description = '{description}' WHERE Name IN(SELECT TOP {changedAmount} Name FROM ClientSmpl)");
+                connection.Execute($"UPDATE [dbo].[ClientSmpl] SET Description = '{description}' WHERE Name IN(SELECT TOP {percentage.ChangeCount(samples.Count)} Name FROM ClientSmpl)");
             }
         }
 
         public void Insert(Percentage percentage)
         {
             var total = samples.Count;
-            var changedAmount = total * percentage / 100;
-            var current = SmpleBuilder.Many(changedAmount, total + 1);
+            var changedAmount = percentage.ChangeCount(total);
+            
+            var current = SmpleBuilder.Many(changedAmount, total * 100 + new Random().Next(1, 1000));
 
             foreach (var sample in current)
             {
@@ -43,11 +42,10 @@ namespace SyncPrototype.Db
         public void Remove(Percentage percentage)
         {
             var total = samples.Count;
-            var changedAmount = total * percentage / 100;
-
+            
             using (var connection = samples.Factory.Create())
             {
-                connection.Execute($"DELETE TOP ({changedAmount}) FROM [dbo].[ClientSmpl]");
+                connection.Execute($"DELETE TOP ({percentage.ChangeCount(samples.Count)}) FROM [dbo].[ClientSmpl]");
             }
 
         }

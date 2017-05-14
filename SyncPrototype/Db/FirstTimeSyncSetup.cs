@@ -11,7 +11,7 @@ namespace SyncPrototype.Db
         public FirstTimeSyncSetup(SmplRepository smplRepository)
         {
             this.repository = smplRepository;
-            Count = 50000;// 300000;
+            Count = 5000;// 300000;
         }
 
         public void Seed()

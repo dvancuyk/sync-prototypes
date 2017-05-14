@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SyncPrototype.Components;
+using SyncPrototype.Connect;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ namespace SyncPrototype.Client
     public class SmplRepository : IRepository<Smpl>
     {
         private IDbConnection connection;
-        private List<Smpl> samples = new List<Smpl>();
+        private SampleTable samples = new SampleTable();
 
         public int Count
         {
@@ -48,25 +49,9 @@ namespace SyncPrototype.Client
         {
             using (var connection = Factory.Create())
             {
-                connection.Execute("Smpls_SaveCollection", new { samples = BuildTable() }, commandType: CommandType.StoredProcedure); 
+                connection.Execute("Smpls_SaveCollection", new { samples = samples.Table }, commandType: CommandType.StoredProcedure); 
             }
             samples.Clear();
-        }
-
-        private DataTable BuildTable()
-        {
-
-            var table = new DataTable("SampleType");
-            table.Columns.Add("Id", typeof(int));
-            table.Columns.Add("Name", typeof(string));
-            table.Columns.Add("Description", typeof(string));
-
-            foreach (var sample in samples)
-            {
-                var row = table.Rows.Add(0, sample.Name, sample.Description);
-            }
-
-            return table;
         }
 
         public void Reset()
@@ -80,6 +65,14 @@ namespace SyncPrototype.Client
         public void Dispose()
         {
             
+        }
+
+        public void Delete(Smpl entity)
+        {
+            using (var connection = Factory.Create())
+            {
+                connection.Execute("DELETE FROM dbo.ClientSmpl WHERE [Name] = @Name", entity);
+            }
         }
     }
 }

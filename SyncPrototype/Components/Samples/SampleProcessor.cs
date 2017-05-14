@@ -38,16 +38,20 @@ namespace SyncPrototype.Components.Samples
                 {
                     this.synced.Save(Mapper.Convert(record));
                 }
-                else if(Comparer.HasChanged(synced[identity], record))
+                else
                 {
-                    this.synced.Save(Mapper.Convert(record, synced[identity]));
+                    if (Comparer.HasChanged(synced[identity], record))
+                        this.synced.Save(Mapper.Convert(record, synced[identity]));
+
                     synced.Remove(identity);
                 }
             }
 
+            // We delete any records that aren't found in the client. 
+            // This obviously doesn't consider records which originate in Connect and need to be pushed to Client. That should be considered later.
             foreach (var item in synced)
             {
-                this.synced.Delete(item);
+                this.synced.Delete(item.Value);
             }
 
             this.synced.Finish();

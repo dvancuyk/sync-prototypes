@@ -21,6 +21,16 @@ namespace SyncPrototype
             return new Percentage(value);
         }
 
+        public int ChangeCount(int total, int minAmount = 1)
+        {
+            var changedAmount = total * percentage / 100;
+
+            if (changedAmount == 0)
+                changedAmount = minAmount;
+
+            return changedAmount;
+        }
+
         public override string ToString()
         {
             return percentage.ToString() + "%";

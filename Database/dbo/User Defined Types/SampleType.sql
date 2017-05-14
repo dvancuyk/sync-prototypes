@@ -2,5 +2,6 @@
 (
 	[Id]		  INT			NOT NULL,
 	[Name]        VARCHAR (100) NOT NULL,
-    [Description] VARCHAR (MAX) NULL
+    [Description] VARCHAR (MAX) NULL,
+	[Delete]	  BIT			NOT NULL
 )

@@ -58,13 +58,15 @@
     <Compile Include="Components\Samples\SampleProcessor.cs" />
     <Compile Include="Components\SqlConnectionFactory.cs" />
     <Compile Include="CompositeWriter.cs" />
+    <Compile Include="Connect\SampleTable.cs" />
     <Compile Include="Connect\StoredProcExecutor.cs" />
     <Compile Include="Connect\Sample.cs" />
+    <Compile Include="Connect\TraditionalSampleRepository.cs" />
     <Compile Include="ConsoleLogger.cs" />
     <Compile Include="Db\ChangeSmplRepresentation.cs" />
     <Compile Include="Db\SampleBuilder.cs" />
-    <Compile Include="Connect\SampleRepository.cs" />
-    <Compile Include="Connect\TvpSampleRepository.cs" />
+    <Compile Include="Connect\MultipleTvpRepository.cs" />
+    <Compile Include="Connect\SingleTvpRepository.cs" />
     <Compile Include="Db\FirstTimeSyncSetup.cs" />
     <Compile Include="Db\ChangeSampleRepresentation.cs" />
     <Compile Include="Db\SmpleBuilder.cs" />

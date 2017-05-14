@@ -14,12 +14,12 @@ namespace SyncPrototypeTests
     [TestClass]
     public class SampleRepositoryTests
     {
-        private SampleRepository repository;
+        private MultipleTvpRepository repository;
 
         [TestInitialize]
         public void Initialize()
         {
-            repository = new SampleRepository(new SqlConnectionFactory());
+            repository = new MultipleTvpRepository(new SqlConnectionFactory());
         }
 
         [TestCleanup]

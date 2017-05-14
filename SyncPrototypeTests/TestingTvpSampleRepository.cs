@@ -12,12 +12,12 @@ namespace SyncPrototypeTests
     [TestClass]
     public class TestingTvpSampleRepository
     {
-        private SampleRepository repository;
+        private MultipleTvpRepository repository;
 
         [TestInitialize]
         public void Initialize()
         {
-            repository = new SampleRepository(new SqlConnectionFactory());
+            repository = new MultipleTvpRepository(new SqlConnectionFactory());
         }
 
         [TestCleanup]
@@ -38,7 +38,7 @@ namespace SyncPrototypeTests
             repository.Reset();
             repository.All().Should().BeEmpty("this is a precondition to the test being run");
 
-            var tvpRepository = new TvpSampleRepository(repository);
+            var tvpRepository = new SingleTvpRepository(repository);
 
             // Act
             tvpRepository.Save(samples);
@@ -52,7 +52,7 @@ namespace SyncPrototypeTests
         {
             // Arrange
             var samples = Seed();
-            var tvpRepository = new TvpSampleRepository(repository);
+            var tvpRepository = new SingleTvpRepository(repository);
             tvpRepository.Save(samples);
             for (int i = 0; i < samples.Length; i++)
             {
@@ -76,7 +76,7 @@ namespace SyncPrototypeTests
         {
             // Arrange
             var samples = Seed();
-            var tvpRepository = new TvpSampleRepository(repository);
+            var tvpRepository = new SingleTvpRepository(repository);
 
             // Act
             tvpRepository.Save(new Sample[0]);
@@ -91,7 +91,7 @@ namespace SyncPrototypeTests
             var samples = repository.All().ToArray();
             if (!repository.All().Any())
             {
-                var repo = new TvpSampleRepository(repository);
+                var repo = new SingleTvpRepository(repository);
                 samples = SampleBuilder.Many(count);
                 foreach (var sample in samples)
                 {
