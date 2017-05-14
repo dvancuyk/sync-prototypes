@@ -37,6 +37,7 @@ namespace SyncPrototype.Connect
 
         public void Save(IEnumerable<Sample> entities)
         {
+<<<<<<< HEAD:SyncPrototype/Connect/SingleTvpRepository.cs
             foreach (var sample in entities)
             {
                 changes.Add(sample);
@@ -50,6 +51,10 @@ namespace SyncPrototype.Connect
                 connection.Execute("Samples_SaveCollection", new { samples = changes.Table }, commandType: CommandType.StoredProcedure);
             }
             changes.Clear();
+=======
+            var storedProcCommand = new StoredProcExecutor(Factory.Create());
+            storedProcCommand.Execute("Samples_SaveCollection", entities);
+>>>>>>> phase-2:SyncPrototype/Connect/TvpSampleRepository.cs
         }
 
         public void Reset()
