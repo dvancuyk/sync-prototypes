@@ -3,7 +3,7 @@
 AS
 BEGIN
 
-	DELETE FROM dbo.ConnectSample WHERE ID IN
+	DELETE FROM dbo.ConnectSample WHERE Id IN
 		(SELECT ConnectSample.Id FROM dbo.ConnectSample LEFT JOIN @samples AS S ON S.Id = ConnectSample.Id  WHERE S.Id IS NULL)
 
 	MERGE ConnectSample WITH (HOLDLOCK) AS c
