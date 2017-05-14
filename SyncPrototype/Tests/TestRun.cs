@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace SyncPrototype.Tests
 {
-    public abstract class TestRun
+    public abstract class TestRun : IDisposable
     {
         private ILogger writer;
         public abstract string RunName { get; }        
@@ -20,17 +20,27 @@ namespace SyncPrototype.Tests
             Iterations = 10;
             ClientRepository = smpls;
             ConnectRepository = samples;
+            RepositoryName = samples.GetType().Name;
             this.writer = logger;
         }
 
+
         protected IRepository<Sample> ConnectRepository { get; }
         protected SmplRepository ClientRepository { get; }
+
+        protected string RepositoryName { get; }
+
         public ILogger Writer
         {
             get
             {
                 return writer;
             }
+        }
+
+        public void Dispose()
+        {
+
         }
 
         /// <summary>
@@ -60,7 +70,7 @@ namespace SyncPrototype.Tests
             long[] times = new long[Iterations];
             Initialize();
             Writer.WriteLine("----------------------------------");
-            Writer.WriteLine("Beginning {0} runs of the test {1}", Iterations, RunName);
+            Writer.WriteLine("Beginning {0} runs of the test: {1}", Iterations, RunName);
 
             for (var current = 0; current < Iterations; current++)
             {
@@ -78,14 +88,15 @@ namespace SyncPrototype.Tests
                 Writer.WriteLine("Iteration {0}: {1} ms", current + 1, timer.ElapsedMilliseconds);
             }
 
-            Writer.WriteLine("Average for {0} iterations: {1}", Iterations, Average(times));
+            Writer.WriteLine("Average for {0} iterations: {1}", Iterations, times.Average());
+            Writer.WriteLine("Median for the {0} iterations: {1}", Iterations, times.Median());
         }
 
         private static double Average(long[] times)
         {
+            
             return times.Sum() / (double)times.Length;
         }
-
 
     }
 }

@@ -20,11 +20,11 @@ namespace SyncPrototype.Db
             };
         }
 
-        public static Sample[] Many(int count = 5)
+        public static Sample[] Many(int count = 5, int? id = null)
         {
             return Enumerable
                 .Range(1, count)
-                .Select(Single)
+                .Select(current => Single(id ?? current))
                 .ToArray();
         }
     }

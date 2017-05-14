@@ -4,17 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>SamplesDatabase</Name>
+    <Name>Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{db305da1-e4b4-46d0-9bd9-281b5d555b91}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <ProjectGuid>{0b1d5b53-2a56-4b5d-b1f3-0ef5d96b0b6b}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>SamplesDatabase</RootNamespace>
-    <AssemblyName>SamplesDatabase</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <RootNamespace>Database</RootNamespace>
+    <AssemblyName>Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,22 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\User Defined Types" />
+    <Folder Include="dbo\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\ConnectSample.sql" />
+    <Build Include="dbo\Tables\ClientSmpl.sql" />
+    <Build Include="dbo\User Defined Types\SampleType.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_SaveCollection.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Smpls_SaveCollection.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="local.publish.xml" />
   </ItemGroup>
 </Project>

@@ -41,7 +41,13 @@ namespace SyncPrototype.Components.Samples
                 else if(Comparer.HasChanged(synced[identity], record))
                 {
                     this.synced.Save(Mapper.Convert(record, synced[identity]));
+                    synced.Remove(identity);
                 }
+            }
+
+            foreach (var item in synced)
+            {
+                this.synced.Delete(item);
             }
 
             this.synced.Finish();

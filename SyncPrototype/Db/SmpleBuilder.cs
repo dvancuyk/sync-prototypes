@@ -15,11 +15,11 @@ namespace SyncPrototype.Db
             };
         }
 
-        public static Smpl[] Many(int count = 5)
+        public static Smpl[] Many(int count = 5, int start = 0)
         {
             return Enumerable
                 .Range(1, count)
-                .Select(Single)
+                .Select(current => Single(start + current))
                 .ToArray();
         }
     }

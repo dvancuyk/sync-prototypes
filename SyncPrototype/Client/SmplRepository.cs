@@ -7,17 +7,19 @@ using System.Linq;
 
 namespace SyncPrototype.Client
 {
-    public class SmplRepository : IRepository<Smpl>, IDisposable
+    public class SmplRepository : IRepository<Smpl>
     {
         private IDbConnection connection;
-        private const string update = "UPDATE dbo.ClientSmpl SET Description = @Description WHERE Name = @Name";
-        private const string insert = "INSERT INTO dbo.ClientSmpl (Name, Description) VALUES (@Name, @Description)";
+        private List<Smpl> samples = new List<Smpl>();
 
         public int Count
         {
             get
             {
-                return Connection.Query<int>("SELECT COUNT(1) FROM dbo.ClientSmpl").First();
+                using (var connection = Factory.Create())
+                {
+                    return connection.Query<int>("SELECT COUNT(1) FROM dbo.ClientSmpl").First(); 
+                }
             }
         }
 
@@ -26,44 +28,58 @@ namespace SyncPrototype.Client
             this.Factory = factory;
         }
 
-        private IDbConnection Connection
-        {
-            get
-            {
-                return connection ?? (connection = Factory.Create());
-            }
-        }
-
         public IConnectionFactory Factory { get; }
-
-        public void Dispose()
-        {
-            if (connection != null)
-            {
-                connection.Dispose();
-                connection = null;
-            }
-        }
+        
 
         public void Save(Smpl sample)
         {
-            var command = insert;
-            Connection.Execute(command, sample);
+            samples.Add(sample);
         }
 
         public IEnumerable<Smpl> All()
         {
-            return Connection.Query<Smpl>("SELECT * FROM dbo.ClientSmpl");
+            using (var connection = Factory.Create())
+            {
+                return connection.Query<Smpl>("SELECT * FROM dbo.ClientSmpl"); 
+            }
         }
 
         public void Finish()
         {
-            
+            using (var connection = Factory.Create())
+            {
+                connection.Execute("Smpls_SaveCollection", new { samples = BuildTable() }, commandType: CommandType.StoredProcedure); 
+            }
+            samples.Clear();
+        }
+
+        private DataTable BuildTable()
+        {
+
+            var table = new DataTable("SampleType");
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("Description", typeof(string));
+
+            foreach (var sample in samples)
+            {
+                var row = table.Rows.Add(0, sample.Name, sample.Description);
+            }
+
+            return table;
         }
 
         public void Reset()
         {
-            Connection.Execute("DELETE FROM dbo.ClientSmpl");
+            using (var connection = Factory.Create())
+            {
+                connection.Execute("DELETE FROM dbo.ClientSmpl"); 
+            }
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

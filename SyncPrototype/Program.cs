@@ -4,6 +4,7 @@ using SyncPrototype.Connect;
 using SyncPrototype.Db;
 using SyncPrototype.Tests;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace SyncPrototype
@@ -13,7 +14,7 @@ namespace SyncPrototype
         private static SqlConnectionFactory factory = new SqlConnectionFactory();
         private static SampleRepository connect = new SampleRepository(factory);
         private static SmplRepository client = new SmplRepository(factory);
-        private static ILogger logger = CreateWriter("TVP vs Single Saves");
+        private static ILogger logger = CreateWriter("Merge vs Insert Delete Update");
 
         static void Main(string[] args)
         {
@@ -22,6 +23,7 @@ namespace SyncPrototype
                 foreach (var runner in Runs)
                 {
                     runner.Run();
+                    runner.Dispose();
                 }
             }
             catch (Exception ex)
@@ -41,17 +43,26 @@ namespace SyncPrototype
 
         }
 
-        private static TestRun[] Runs
+        private static IEnumerable<TestRun> Runs
         {
             get
             {
-                return new TestRun[]
-                {
-                    new TVPInsertsTestRun(client, connect, logger),
-                    new NewSyncTestRun(client, connect, logger),
-                    new ModifiedSyncTestRun(client, connect, logger),
-                    new TvpModifiedSyncTestRun(client, connect, logger)
-            };
+                yield return new NewSyncTestRun(client, new TvpSampleRepository(connect), logger);
+                yield return new NewSyncTestRun(client, connect, logger);
+                var baseline = new ModifiedSyncTestRun(client, new TvpSampleRepository(connect), logger);
+                yield return baseline;
+
+                var variant = new ModifiedSyncTestRun(client, connect, logger);
+                yield return variant;
+
+                baseline.Inserts = variant.Inserts = 1;
+                yield return baseline;
+                yield return variant;
+
+                baseline.Deletes = variant.Deletes = 4;
+                yield return baseline;
+                yield return variant;
+                //yield return variant;
             }
         }
         private static CompositeWriter CreateWriter(string fileName)
@@ -63,12 +74,12 @@ namespace SyncPrototype
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
 
-            return new CompositeWriter(Path.Combine(directory, fileName + ".txt"));
+            return new CompositeWriter(Path.Combine(directory, fileName + DateTime.Now.ToShortTimeString().Replace(":", "") + ".txt"));
         }
 
         private static void Change(SampleRepository repository, ushort percentage)
         {
-            var modifier = new PartialUpdates(repository, percentage);
+            var modifier = new ChangeSampleRepresentation(repository, percentage);
         }
     }
 }

@@ -11,17 +11,17 @@ namespace SyncPrototype.Db
         public FirstTimeSyncSetup(SmplRepository smplRepository)
         {
             this.repository = smplRepository;
-            Count = 10;//30000;
+            Count = 50000;// 300000;
         }
-
-           
 
         public void Seed()
         {
             foreach (var item in SmpleBuilder.Many(Count))
             {
-                repository.Save(item);   
+                repository.Save(item);
             }
+
+            repository.Finish();
         }
     }
 }

@@ -10,7 +10,9 @@ namespace SyncPrototype.Components
         public IDbConnection Create()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["sync"].ConnectionString;
-            return new SqlConnection(connectionString);
+            var connection = new SqlConnection(connectionString);
+
+            return connection;
         }
 
         public void Dispose()

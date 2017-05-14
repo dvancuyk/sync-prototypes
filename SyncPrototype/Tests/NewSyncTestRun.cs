@@ -1,17 +1,16 @@
 ﻿using SyncPrototype.Client;
+using SyncPrototype.Components;
 using SyncPrototype.Connect;
-using System;
-using System.IO;
 
 namespace SyncPrototype.Tests
 {
     public class NewSyncTestRun : TestRun
     {
-        public NewSyncTestRun(SmplRepository smpls, SampleRepository samples, ILogger writer) : base(smpls, samples, writer)
+        public NewSyncTestRun(SmplRepository smpls, IRepository<Sample> samples, ILogger writer) : base(smpls, samples, writer)
         {
         }
 
-        public override string RunName => "Individual Saves - All Inserts Setup";
+        public override string RunName => $"{RepositoryName} - All Inserts Setup";
 
         protected override void PrepTest()
         {
@@ -27,6 +26,8 @@ namespace SyncPrototype.Tests
 
                 seeder.Seed();
             }
+
+            ConnectRepository.Reset();
         }
     }
 }
