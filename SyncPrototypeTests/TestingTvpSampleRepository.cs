@@ -42,6 +42,7 @@ namespace SyncPrototypeTests
 
             // Act
             tvpRepository.Save(samples);
+            tvpRepository.Finish();
 
             // Assert
             repository.All().Should().HaveSameCount(samples);
@@ -61,6 +62,7 @@ namespace SyncPrototypeTests
 
             // Act
             tvpRepository.Save(samples);
+            tvpRepository.Finish();
 
             // Assert
             var changed = repository.All().ToArray();
@@ -79,7 +81,12 @@ namespace SyncPrototypeTests
             var tvpRepository = new SingleTvpRepository(repository);
 
             // Act
-            tvpRepository.Save(new Sample[0]);
+            foreach (var sample in samples)
+            {
+                tvpRepository.Delete(sample);
+            }
+
+            tvpRepository.Finish();
 
             // Assert
             repository.All().Should().BeEmpty();

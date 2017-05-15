@@ -3,6 +3,7 @@ using SyncPrototype.Components;
 using System.Data;
 using Dapper;
 using System;
+using System.Diagnostics;
 
 namespace SyncPrototype.Connect
 {
@@ -45,10 +46,19 @@ namespace SyncPrototype.Connect
 
         public void Finish()
         {
-            using (var connection = Factory.Create())
+            try
             {
-                connection.Execute("Samples_SaveCollection", new { samples = changes.Table }, commandType: CommandType.StoredProcedure);
+                using (var connection = Factory.Create())
+                {
+                    connection.Execute("Samples_SaveCollection", new { samples = changes.Table }, commandType: CommandType.StoredProcedure);
+                }
+
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            changes.Clear();
         }
 
         public void Reset()

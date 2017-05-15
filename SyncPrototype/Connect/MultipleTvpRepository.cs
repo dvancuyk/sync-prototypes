@@ -9,7 +9,7 @@ namespace SyncPrototype.Connect
 {
     public class MultipleTvpRepository : IRepository<Sample>, IDisposable
     {
-        private const string update = "Samples Update";
+        private const string update = "Samples_Update";
         private const string insert = "Samples_Insert";
         private const string delete = "Samples_Delete";
 
