@@ -8,7 +8,6 @@ namespace SyncPrototype.Db
     public class ChangeSmplRepresentation
     {
         private readonly IRepository<Smpl> samples;
-        private ushort percentage;
 
         public ChangeSmplRepresentation(IRepository<Smpl> sampleRepository)
         {

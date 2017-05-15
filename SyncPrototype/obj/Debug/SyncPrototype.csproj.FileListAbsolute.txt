@@ -3,6 +3,6 @@ D:\Projects\Kallian Inc\sync\SyncPrototype\bin\Debug\SyncPrototype.exe
 D:\Projects\Kallian Inc\sync\SyncPrototype\bin\Debug\SyncPrototype.pdb
 D:\Projects\Kallian Inc\sync\SyncPrototype\bin\Debug\Dapper.dll
 D:\Projects\Kallian Inc\sync\SyncPrototype\bin\Debug\Dapper.xml
+D:\Projects\Kallian Inc\sync\SyncPrototype\obj\Debug\SyncPrototype.csprojResolveAssemblyReference.cache
 D:\Projects\Kallian Inc\sync\SyncPrototype\obj\Debug\SyncPrototype.exe
 D:\Projects\Kallian Inc\sync\SyncPrototype\obj\Debug\SyncPrototype.pdb
-D:\Projects\Kallian Inc\sync\SyncPrototype\obj\Debug\SyncPrototype.csprojResolveAssemblyReference.cache

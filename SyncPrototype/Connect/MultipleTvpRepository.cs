@@ -9,20 +9,9 @@ namespace SyncPrototype.Connect
 {
     public class MultipleTvpRepository : IRepository<Sample>, IDisposable
     {
-<<<<<<< HEAD:SyncPrototype/Connect/MultipleTvpRepository.cs
-        private const string update = "Samples_Update";
+        private const string update = "Samples Update";
         private const string insert = "Samples_Insert";
         private const string delete = "Samples_Delete";
-=======
-        private IDbConnection connection;
-        private const string update = "Samples_Update";
-        private const string insert = "Samples_Insert";
-        private const string delete = "Samples_Delete";
-
-        private List<Sample> modified = new List<Sample>();
-        private List<Sample> netNew = new List<Sample>();
-        private List<Sample> removed = new List<Sample>();
->>>>>>> phase-2:SyncPrototype/Connect/SampleRepository.cs
 
         private SampleTable modified = new SampleTable();
         private SampleTable netNew = new SampleTable();
@@ -73,19 +62,9 @@ namespace SyncPrototype.Connect
 
         public void Reset()
         {
-<<<<<<< HEAD:SyncPrototype/Connect/MultipleTvpRepository.cs
             using (var connection = Factory.Create())
             {
-                connection.Query<Sample>("DELETE FROM dbo.ConnectSample"); 
-=======
-            if(sample.Id > 0)
-            {
-                modified.Add(sample);
-            }
-            else
-            {
-                netNew.Add(sample);
->>>>>>> phase-2:SyncPrototype/Connect/SampleRepository.cs
+                connection.Execute("DELETE FROM dbo.ConnectSample");
             }
         }
 
@@ -111,20 +90,7 @@ namespace SyncPrototype.Connect
 
         public void Delete(Sample entity)
         {
-<<<<<<< HEAD:SyncPrototype/Connect/MultipleTvpRepository.cs
             removed.Add(entity, true);
-=======
-            Execute(update, modified);
-            Execute(insert, netNew);
-            Execute(delete, removed);
-        }
-
-        private void Execute(string proc, List<Sample> samples)
-        {
-            var executor = new StoredProcExecutor(Connection);
-            executor.Execute(proc, samples);
-            samples.Clear();
->>>>>>> phase-2:SyncPrototype/Connect/SampleRepository.cs
         }
     }
 }
