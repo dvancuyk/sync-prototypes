@@ -47,13 +47,13 @@ namespace SyncPrototype
         {
             get
             {
-                int iterations = 1,
-                    seedCount = 10;
-                //yield return new NewSyncTestRun(client, new SingleTvpRepository(connect), logger)
-                //{
-                //    Iterations = iterations,
-                //    SeedCount = seedCount
-                //};
+                int iterations = 10,
+                    seedCount = 100000;
+                yield return new NewSyncTestRun(client, new SingleTvpRepository(connect), logger)
+                {
+                    Iterations = iterations,
+                    SeedCount = seedCount
+                };
 
                 yield return new NewSyncTestRun(client, connect, logger)
                 {
@@ -64,7 +64,7 @@ namespace SyncPrototype
                 var baseline = new ModifiedSyncTestRun(client, new SingleTvpRepository(connect), logger);
                 baseline.Iterations = iterations;
 
-                //yield return baseline;
+                yield return baseline;
 
                 var variant = new ModifiedSyncTestRun(client, connect, logger);
                 variant.Iterations = iterations;
@@ -72,12 +72,13 @@ namespace SyncPrototype
                 yield return variant;
 
                 baseline.Inserts = variant.Inserts = 1;
-                //yield return baseline;
+                yield return baseline;
                 yield return variant;
 
                 baseline.Deletes = variant.Deletes = 4;
-                //yield return baseline;
+                yield return baseline;
                 yield return variant;
+
             }
         }
         private static CompositeWriter CreateWriter(string fileName)

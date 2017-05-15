@@ -7,4 +7,3 @@ BEGIN
 		(SELECT ConnectSample.Id FROM dbo.ConnectSample LEFT JOIN @samples AS S ON S.Id = ConnectSample.Id  WHERE S.Id IS NOT NULL)
 
 END
-

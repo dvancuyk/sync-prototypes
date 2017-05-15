@@ -1,10 +1,7 @@
-﻿using Dapper;
-using System;
+
+using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SyncPrototype.Connect
 {
@@ -24,14 +21,17 @@ namespace SyncPrototype.Connect
 
         private static DataTable SampleType(IEnumerable<Sample> samples)
         {
-            SampleTable table = new SampleTable();
+            var table = new DataTable("SampleType");
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("Description", typeof(string));
 
             foreach (var sample in samples)
             {
-                table.Add(sample);
+                var row = table.Rows.Add(sample.Id, sample.Name, sample.Description);
             }
 
-            return table.Table;
+            return table;
         }
     }
 }

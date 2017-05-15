@@ -64,7 +64,7 @@ namespace SyncPrototype.Connect
         {
             using (var connection = Factory.Create())
             {
-                connection.Query<Sample>("DELETE FROM dbo.ConnectSample"); 
+                connection.Execute("DELETE FROM dbo.ConnectSample");
             }
         }
 

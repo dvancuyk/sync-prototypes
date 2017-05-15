@@ -73,6 +73,9 @@
     <Build Include="dbo\Stored Procedures\Samples_Insert.sql" />
     <Build Include="dbo\Stored Procedures\Samples_Update.sql" />
     <Build Include="dbo\Stored Procedures\Smpls_SaveCollection.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Samples_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />

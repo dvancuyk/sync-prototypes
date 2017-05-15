@@ -8,7 +8,7 @@ BEGIN
 
 	MERGE ConnectSample WITH (HOLDLOCK) AS c
 	USING @samples AS s
-	ON s.[Id] = c.[Id]
+	ON s.[Id] = c.[Id] AND s.[Delete] = 0
 	WHEN MATCHED THEN
 		UPDATE SET
 			[Description] = s.[Description]

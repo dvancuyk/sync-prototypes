@@ -1,0 +1,53 @@
+Seeding 30000 new records. 
+----------------------------------
+Beginning 10 runs of the test TVP All Inserts Test Run
+Iteration 1: 1710 ms
+Iteration 2: 570 ms
+Iteration 3: 367 ms
+Iteration 4: 366 ms
+Iteration 5: 374 ms
+Iteration 6: 495 ms
+Iteration 7: 397 ms
+Iteration 8: 371 ms
+Iteration 9: 330 ms
+Iteration 10: 514 ms
+Average for 10 iterations: 549.4
+----------------------------------
+Beginning 10 runs of the test Individual Saves - All Inserts Setup
+Iteration 1: 11975 ms
+Iteration 2: 11996 ms
+Iteration 3: 12683 ms
+Iteration 4: 12320 ms
+Iteration 5: 12882 ms
+Iteration 6: 12304 ms
+Iteration 7: 12694 ms
+Iteration 8: 12190 ms
+Iteration 9: 12234 ms
+Iteration 10: 12862 ms
+Average for 10 iterations: 12414
+----------------------------------
+Beginning 10 runs of the test Individual Saves - Updates with 50% modified
+Iteration 1: 172147 ms
+Iteration 2: 177305 ms
+Iteration 3: 175291 ms
+Iteration 4: 177247 ms
+Iteration 5: 174797 ms
+Iteration 6: 175617 ms
+Iteration 7: 173784 ms
+Iteration 8: 174459 ms
+Iteration 9: 176242 ms
+Iteration 10: 175422 ms
+Average for 10 iterations: 175231.1
+----------------------------------
+Beginning 10 runs of the test TVP Updates with 50% modified
+Iteration 1: 174195 ms
+Iteration 2: 176120 ms
+Iteration 3: 172216 ms
+Iteration 4: 172469 ms
+Iteration 5: 173880 ms
+Iteration 6: 176835 ms
+Iteration 7: 160550 ms
+Iteration 8: 153049 ms
+Iteration 9: 153611 ms
+Iteration 10: 147864 ms
+Average for 10 iterations: 166078.9

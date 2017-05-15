@@ -1,5 +1,4 @@
 ﻿using SyncPrototype.Client;
-using System.Data;
 
 namespace SyncPrototype.Db
 {

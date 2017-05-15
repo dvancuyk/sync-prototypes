@@ -10,7 +10,6 @@ namespace SyncPrototype.Client
 {
     public class SmplRepository : IRepository<Smpl>
     {
-        private IDbConnection connection;
         private SampleTable samples = new SampleTable();
 
         public int Count
