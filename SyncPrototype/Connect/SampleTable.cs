@@ -1,4 +1,5 @@
 ﻿using SyncPrototype.Client;
+using System.Collections.Generic;
 using System.Data;
 
 namespace SyncPrototype.Connect
@@ -25,6 +26,16 @@ namespace SyncPrototype.Connect
         public void Add(Smpl sample, bool remove = false)
         {
             Table.Rows.Add(0, sample.Name, sample.Description, remove);
+        }
+
+        public void AddRange(IEnumerable<Sample> samples)
+        {
+            if (samples == null) return;
+
+            foreach (var sample in samples)
+            {
+                Add(sample);
+            }
         }
 
         public void Clear()

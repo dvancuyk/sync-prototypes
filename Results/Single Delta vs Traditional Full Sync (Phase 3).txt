@@ -1,0 +1,113 @@
+Seeding 100000 new records. 
+----------------------------------
+Beginning 10 runs of the test: SingleTvpRepository - All Inserts Setup
+Iteration 1: 1682 ms
+Iteration 2: 996 ms
+Iteration 3: 988 ms
+Iteration 4: 977 ms
+Iteration 5: 971 ms
+Iteration 6: 1025 ms
+Iteration 7: 992 ms
+Iteration 8: 971 ms
+Iteration 9: 978 ms
+Iteration 10: 995 ms
+Average for 10 iterations: 1057.5
+Median for the 10 iterations: 998
+----------------------------------
+Beginning 10 runs of the test: TraditionalSampleRepository - All Inserts Setup
+Iteration 1: 2185 ms
+Iteration 2: 2141 ms
+Iteration 3: 2154 ms
+Iteration 4: 2177 ms
+Iteration 5: 2154 ms
+Iteration 6: 2162 ms
+Iteration 7: 2144 ms
+Iteration 8: 2133 ms
+Iteration 9: 2193 ms
+Iteration 10: 2128 ms
+Average for 10 iterations: 2157.1
+Median for the 10 iterations: 2158
+----------------------------------
+Beginning 10 runs of the test: SingleTvpRepository - 50% modified.
+Iteration 1: 901 ms
+Iteration 2: 727 ms
+Iteration 3: 701 ms
+Iteration 4: 732 ms
+Iteration 5: 736 ms
+Iteration 6: 705 ms
+Iteration 7: 741 ms
+Iteration 8: 721 ms
+Iteration 9: 735 ms
+Iteration 10: 696 ms
+Average for 10 iterations: 739.5
+Median for the 10 iterations: 720
+----------------------------------
+Beginning 10 runs of the test: TraditionalSampleRepository - 50% modified.
+Iteration 1: 2795 ms
+Iteration 2: 2818 ms
+Iteration 3: 3134 ms
+Iteration 4: 2907 ms
+Iteration 5: 2877 ms
+Iteration 6: 2896 ms
+Iteration 7: 2777 ms
+Iteration 8: 3063 ms
+Iteration 9: 2874 ms
+Iteration 10: 2805 ms
+Average for 10 iterations: 2894.6
+Median for the 10 iterations: 2886
+----------------------------------
+Beginning 10 runs of the test: SingleTvpRepository - 1% inserted, 50% modified.
+Iteration 1: 766 ms
+Iteration 2: 1063 ms
+Iteration 3: 1043 ms
+Iteration 4: 1025 ms
+Iteration 5: 1104 ms
+Iteration 6: 1086 ms
+Iteration 7: 1214 ms
+Iteration 8: 1187 ms
+Iteration 9: 1321 ms
+Iteration 10: 1273 ms
+Average for 10 iterations: 1108.2
+Median for the 10 iterations: 1095
+----------------------------------
+Beginning 10 runs of the test: TraditionalSampleRepository - 1% inserted, 50% modified.
+Iteration 1: 9388 ms
+Iteration 2: 3214 ms
+Iteration 3: 3122 ms
+Iteration 4: 3156 ms
+Iteration 5: 3154 ms
+Iteration 6: 3196 ms
+Iteration 7: 3259 ms
+Iteration 8: 3299 ms
+Iteration 9: 3330 ms
+Iteration 10: 3395 ms
+Average for 10 iterations: 3851.3
+Median for the 10 iterations: 3175
+----------------------------------
+Beginning 10 runs of the test: SingleTvpRepository - 4% deleted, 1% inserted, 50% modified.
+Iteration 1: 933 ms
+Iteration 2: 1076 ms
+Iteration 3: 1083 ms
+Iteration 4: 1111 ms
+Iteration 5: 1128 ms
+Iteration 6: 1063 ms
+Iteration 7: 1175 ms
+Iteration 8: 1211 ms
+Iteration 9: 1430 ms
+Iteration 10: 1245 ms
+Average for 10 iterations: 1145.5
+Median for the 10 iterations: 1095
+----------------------------------
+Beginning 10 runs of the test: TraditionalSampleRepository - 4% deleted, 1% inserted, 50% modified.
+Iteration 1: 8339 ms
+Iteration 2: 2385 ms
+Iteration 3: 2268 ms
+Iteration 4: 2233 ms
+Iteration 5: 2134 ms
+Iteration 6: 2137 ms
+Iteration 7: 2045 ms
+Iteration 8: 1989 ms
+Iteration 9: 1881 ms
+Iteration 10: 1845 ms
+Average for 10 iterations: 2725.6
+Median for the 10 iterations: 2135

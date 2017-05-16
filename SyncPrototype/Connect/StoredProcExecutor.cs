@@ -21,17 +21,10 @@ namespace SyncPrototype.Connect
 
         private static DataTable SampleType(IEnumerable<Sample> samples)
         {
-            var table = new DataTable("SampleType");
-            table.Columns.Add("Id", typeof(int));
-            table.Columns.Add("Name", typeof(string));
-            table.Columns.Add("Description", typeof(string));
+            var converted = new SampleTable();
+            converted.AddRange(samples);
 
-            foreach (var sample in samples)
-            {
-                var row = table.Rows.Add(sample.Id, sample.Name, sample.Description);
-            }
-
-            return table;
+            return converted.Table;
         }
     }
 }

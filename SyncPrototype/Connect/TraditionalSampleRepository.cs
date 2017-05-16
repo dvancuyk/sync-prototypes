@@ -1,9 +1,6 @@
 ﻿using SyncPrototype.Components;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SyncPrototype.Connect
 {
@@ -11,7 +8,7 @@ namespace SyncPrototype.Connect
     /// Repository instance which tries to mimic at best how the current sync application pushes data to the underlying data store, which is
     /// push everything, let the DB figure it out.
     /// </summary>
-    public class TraditionalSampleRepository
+    public class TraditionalSampleRepository : IRepository<Sample>
     {
         private IRepository<Sample> repo;
         private Dictionary<int, Sample> samples = new Dictionary<int, Sample>();
@@ -54,7 +51,7 @@ namespace SyncPrototype.Connect
             using (var connection = Factory.Create())
             {
                 var storedProcCommand = new StoredProcExecutor(connection);
-                storedProcCommand.Execute("Samples_SaveCollection", entities);
+                storedProcCommand.Execute("[dbo].[Samples_Sync]", entities);
             }
         }
 

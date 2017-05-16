@@ -56,6 +56,7 @@
     <Compile Include="Components\Samples\SampleDataComparer.cs" />
     <Compile Include="Components\Samples\SampleIdentity.cs" />
     <Compile Include="Components\Samples\SampleProcessor.cs" />
+    <Compile Include="Components\Samples\TraditionalSyncProcessor.cs" />
     <Compile Include="Components\SqlConnectionFactory.cs" />
     <Compile Include="CompositeWriter.cs" />
     <Compile Include="Connect\SampleTable.cs" />

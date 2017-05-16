@@ -1,14 +1,13 @@
 ﻿using SyncPrototype.Client;
 using SyncPrototype.Connect;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SyncPrototype.Components.Samples
 {
     public class SampleProcessor : IProcessor
     {
-        private IRepository<Smpl> dataSource;
-        private IRepository<Sample> synced;
+        protected IRepository<Smpl> dataSource;
+        protected IRepository<Sample> synced;
 
         public SampleProcessor(IRepository<Smpl> clientRepository, IRepository<Sample> connectRepository)
         {

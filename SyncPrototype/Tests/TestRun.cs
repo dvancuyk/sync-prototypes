@@ -22,6 +22,7 @@ namespace SyncPrototype.Tests
             ConnectRepository = samples;
             RepositoryName = samples.GetType().Name;
             this.writer = logger;
+            ProcessorFactory = (client, connect) => new SampleProcessor(client, connect);
         }
 
 
@@ -37,6 +38,8 @@ namespace SyncPrototype.Tests
                 return writer;
             }
         }
+
+        public Func<IRepository<Smpl>, IRepository<Sample>, SampleProcessor> ProcessorFactory { get; set; }
 
         public void Dispose()
         {
@@ -59,11 +62,6 @@ namespace SyncPrototype.Tests
 
         }
 
-        protected virtual SampleProcessor Processor()
-        {
-            return new SampleProcessor(ClientRepository, ConnectRepository);
-        }
-
         public virtual void Run()
         {
             var timer = new Stopwatch();
@@ -74,8 +72,7 @@ namespace SyncPrototype.Tests
 
             for (var current = 0; current < Iterations; current++)
             {
-                var processor = new SampleProcessor(ClientRepository, ConnectRepository);
-
+                var processor = ProcessorFactory(ClientRepository, ConnectRepository);
                 PrepTest();
 
                 timer.Reset();
