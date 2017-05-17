@@ -11,10 +11,16 @@ This project outlines the basic ideas I'm working on to make our Sync Process bo
 ## Current Notes
 TVP and save collections are the way to go. TVPs are quicker.
 
-Changes: 
- -> Change repository to do so at the end
+## Changes: 
+ * Change repository to do so at the end
 
-Tests:
- -> Determine if using separate calls for Insert, Delete, and Update is faster or slower than using the TVP methodology
-     -> Determine if parallel tasks are running, how each is affected.
- -> Determine if using subsets of changed values is faster or slower than passing in all of the values
+## Tests:
+
+* Determine if using separate calls for Insert, Delete, and Update is faster or slower than using the TVP methodology
+     - Determine if parallel tasks are running, how each is affected.
+* Determine if using subsets of changed values is faster or slower than passing in all of the values. __Subsets are faster. See phase 3 testing__
+* Determine how to schedule different components. 
+	- What would the schedule payload look like?
+	- How would the scheduler load the components scheduled to run?
+	- How would the scheduler retain scheduled tasks that have run?
+	- Is there a way we can do all of this without having class definition exposion?

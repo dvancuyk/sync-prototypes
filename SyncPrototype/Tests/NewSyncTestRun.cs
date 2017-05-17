@@ -11,7 +11,7 @@ namespace SyncPrototype.Tests
         }
 
         public override string RunName => $"{RepositoryName} - All Inserts Setup";
-
+        public bool ForceReset { get; set; }
         public int SeedCount { get; set; } = 30000;
 
         protected override void PrepTest()
@@ -21,6 +21,9 @@ namespace SyncPrototype.Tests
 
         protected override void Initialize()
         {
+            if (ForceReset)
+                ClientRepository.Reset();
+
             if(this.ClientRepository.Count == 0)
             {
                 var seeder = new Db.FirstTimeSyncSetup(ClientRepository)

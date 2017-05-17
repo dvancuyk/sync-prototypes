@@ -1,5 +1,28 @@
 ﻿CREATE TABLE [dbo].[ClientSmpl] (
-    [Name]        VARCHAR (100) NOT NULL,
-    [Description] VARCHAR (MAX) NULL
+    [Name]			VARCHAR (100) NOT NULL,
+    [Description]	VARCHAR (MAX) NULL,
+	[IsActive]		BIT NULL,
+	[Token]			UNIQUEIDENTIFIER NOT NULL,
+	[AddressLine1]	VARCHAR(150),
+	[AddressLine2]	VARCHAR(150),
+	[City]			VARCHAR(100),
+	[State]			VARCHAR(2),
+	[ZipCode]		VARCHAR(5),
+	[BuildingNumber] VARCHAR(5) NULL,
+	[Legal1]		VARCHAR(30) NULL,
+	[Legal2]		VARCHAR(30) NULL,
+	[SquareFootage]	VARCHAR(10) NULL,
+	[AssessedValue] VARCHAR(10) NULL,
+	[OwnerRatio]	VARCHAR(10) NULL,
+	[GroupOwner_Number] VARCHAR(10) NULL,
+	[GlCostCenter]	VARCHAR(3) NULL,
+	[Latitude]		DECIMAL(9, 6) NULL,
+	[Longitude]		DECIMAL(9, 6) NULL,
+	[GeocodeProvider] VARCHAR(50) NULL,
+	[GeocodeAccuracy] VARCHAR(50) NULL,
+	[ModifiedDate]	DATETIME2 (7) NULL,
+	[PROASSMTCATG]	INT NULL,
+	[PROASSMTAMT]	MONEY NULL,
+	[PROASSESSEDVAL] MONEY NULL
 );
 
