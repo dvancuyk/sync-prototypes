@@ -22,6 +22,29 @@ namespace SyncPrototype.Components.Samples
         {
             converted.Name = sample.Name;
             converted.Description = sample.Description;
+            converted.IsActive = sample.IsActive;
+            converted.Token = sample.Token;
+            converted.AddressLine1 = sample.AddressLine1;
+            converted.AddressLine2 = sample.AddressLine2;
+            converted.City = sample.City;
+            converted.State = sample.State;
+            converted.ZipCode = sample.ZipCode;
+            converted.BuildingNumber = sample.BuildingNumber;
+            converted.Legal1 = sample.Legal1;
+            converted.Legal2 = sample.Legal2;
+            converted.SquareFootage = sample.SquareFootage;
+            converted.AssessedValue = sample.AssessedValue;
+            converted.OwnerRatio = sample.OwnerRatio;
+            converted.GroupOwnerNumber = sample.GroupOwnerNumber;
+            converted.GlCostCenter = sample.GlCostCenter;
+            converted.Latitude = sample.Latitude;
+            converted.Longitude = sample.Longitude;
+            converted.GeocodeProvider = sample.GeocodeProvider;
+            converted.GeocodeAccuracy = sample.GeocodeAccuracy;
+            converted.ModifiedDate = sample.ModifiedDate;
+            converted.PROASSMTCATG = sample.PROASSMTCATG;
+            converted.PROASSMTAMT = sample.PROASSMTAMT;
+            converted.PROASSESSEDVAL = sample.PROASSESSEDVAL;
             converted.Changed = false;
 
             return converted;

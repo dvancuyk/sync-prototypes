@@ -52,6 +52,7 @@
     <Compile Include="Components\DataChangeSource.cs" />
     <Compile Include="Components\ConnectConflictResolver.cs" />
     <Compile Include="Components\IRepository.cs" />
+    <Compile Include="Components\ISampleType.cs" />
     <Compile Include="Components\Samples\SampleConnectMapper.cs" />
     <Compile Include="Components\Samples\SampleDataComparer.cs" />
     <Compile Include="Components\Samples\SampleIdentity.cs" />

@@ -54,6 +54,7 @@ namespace SyncPrototype
 
                 yield return new NewSyncTestRun(client, new SingleTvpRepository(connect), logger)
                 {
+                    ForceReset = true,
                     Iterations = iterations,
                     SeedCount = seedCount,
                 };
@@ -65,12 +66,12 @@ namespace SyncPrototype
                     ProcessorFactory = traditionalProcessor
                 };
 
-                var baseline = new ModifiedSyncTestRun(client, new SingleTvpRepository(connect), logger);
+                var baseline = new ModifiedSyncTestRun(client, new SingleTvpRepository(connect), logger, 10);
                 baseline.Iterations = iterations;
 
                 yield return baseline;
 
-                var variant = new ModifiedSyncTestRun(client, connect, logger);
+                var variant = new ModifiedSyncTestRun(client, connect, logger, 10);
                 variant.ProcessorFactory = traditionalProcessor;
                 variant.Iterations = iterations;
 
