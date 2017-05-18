@@ -1,3 +1,4 @@
+
 # sync
 
 This project outlines the basic ideas I'm working on to make our Sync Process both faster and more reliable.
@@ -24,3 +25,7 @@ TVP and save collections are the way to go. TVPs are quicker.
 	- How would the scheduler load the components scheduled to run?
 	- How would the scheduler retain scheduled tasks that have run?
 	- Is there a way we can do all of this without having class definition exposion?
+	- Make it resilient.  It needs to do the following things:
+		1. Load from server when available
+		2. Load from local when server is unavailable
+		3. Have a default value for all customers and be able to override for a specific customer.
