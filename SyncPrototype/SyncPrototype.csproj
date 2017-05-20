@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\FINTRX.cs" />
     <Compile Include="Client\Smpl.cs" />
     <Compile Include="Client\SmplRepository.cs" />
     <Compile Include="Components\DataChangeSource.cs" />
@@ -58,6 +59,9 @@
     <Compile Include="Components\Samples\SampleIdentity.cs" />
     <Compile Include="Components\Samples\SampleProcessor.cs" />
     <Compile Include="Components\Samples\TraditionalSyncProcessor.cs" />
+    <Compile Include="Components\Scheduling\Crontab.cs" />
+    <Compile Include="Components\Scheduling\DateRange.cs" />
+    <Compile Include="Components\Scheduling\Scheduler.cs" />
     <Compile Include="Components\SqlConnectionFactory.cs" />
     <Compile Include="CompositeWriter.cs" />
     <Compile Include="Connect\SampleTable.cs" />
